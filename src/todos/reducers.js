@@ -1,6 +1,6 @@
-import { CREATE_TODO, REMOVE_TODO } from "./actions";
+import { CREATE_TODO, REMOVE_TODO, COMPLETE_TODO } from "./actions";
 
-export const todos = (state=[], action) => {
+export const todos = (state = [], action) => {
   const { type, payload } = action;
 
   switch (type) {
@@ -11,6 +11,15 @@ export const todos = (state=[], action) => {
         isCompleted: false,
       };
       return state.concat(newTodo);
+    }
+    case COMPLETE_TODO: {
+      const { text } = payload;
+      return state.map((todo) => {
+        if (todo.text === text) {
+          return { ...todo, isCompleted: true };
+        }
+        return todo;
+      });
     }
     case REMOVE_TODO: {
       const { text } = payload;
