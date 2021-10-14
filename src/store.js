@@ -1,5 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
-import { todos } from "./todos/reducers";
+import { todos, isLoading } from "./todos/reducers";
 import { persistReducer } from "redux-persist";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
@@ -7,6 +7,7 @@ import storage from "redux-persist/lib/storage";
 import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
 const reducers = {
   todos,
+  isLoading,
 };
 const persistConfig = {
   key: "root",
